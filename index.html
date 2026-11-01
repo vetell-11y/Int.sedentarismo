@@ -51,15 +51,15 @@
     h1.titulo {
       text-align: center;
       color: var(--roxo-claro);
-      font-size: 28px;
-      margin: 8px 0 24px;
+      font-size: 22px;
+      margin: 8px 0 20px;
     }
 
     p.texto {
       color: #e4e4e7;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .voltar {
@@ -136,18 +136,36 @@
 
     .abas {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px 22px;
-      margin: 22px 0 26px;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 10px;
+      margin: 18px -18px 22px;
+      padding: 4px 18px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
 
+    .abas::-webkit-scrollbar { display: none; }
+
     .abas button {
-      color: var(--roxo);
-      font-size: 18px;
+      flex: none;
+      scroll-snap-align: start;
+      white-space: nowrap;
+      color: var(--roxo-claro);
+      font-size: 14px;
       font-weight: 700;
-      padding: 8px 2px;
+      padding: 9px 16px;
+      border: 1.5px solid var(--roxo);
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.12);
     }
+
+    .abas button:active { background: var(--roxo); color: #fff; }
+
+    img.logo { display:block; width:100%; max-width:420px; margin:0 auto 24px; }
+    p.texto.destaque { font-weight:600; font-size:14px; line-height:1.6; color:#fff; padding:0 4px; }
 
     /* ---------- Avaliações ---------- */
     .btn-pilula {
@@ -225,7 +243,7 @@
     }
 
     .caixa .grande {
-      font-size: 24px;
+      font-size: 18px;
     }
 
     .caixa .grande b {
@@ -243,37 +261,37 @@
     /* ---------- Resultados ---------- */
     .bloco h2 {
       color: var(--roxo);
-      font-size: 30px;
-      margin: 26px 0 14px;
+      font-size: 18px;
+      margin: 20px 0 10px;
     }
 
     .bola {
-      min-width: 80px;
-      height: 80px;
-      padding: 0 14px;
+      min-width: 46px;
+      height: 46px;
+      padding: 0 12px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       background: var(--roxo);
-      border-radius: 40px;
-      font-size: 22px;
+      border-radius: 23px;
+      font-size: 16px;
       font-weight: 700;
     }
 
     /* ---------- Sugestões ---------- */
     .lista-sug p {
       color: var(--roxo-claro);
-      font-size: 22px;
+      font-size: 16px;
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       line-height: 1.4;
     }
 
     .rodape {
       color: var(--roxo-claro);
-      font-size: 16px;
+      font-size: 13px;
       line-height: 1.6;
-      margin-top: 60px;
+      margin-top: 40px;
       text-align: center;
     }
 
@@ -290,8 +308,8 @@
       align-items: center;
       gap: 12px;
       width: 100%;
-      padding: 26px 18px;
-      font-size: 22px;
+      padding: 20px 18px;
+      font-size: 17px;
       font-weight: 700;
       text-align: left;
       text-decoration: none;
@@ -310,7 +328,7 @@
     }
 
     #hora {
-      font-size: 56px;
+      font-size: 40px;
       font-weight: 700;
       color: var(--roxo-claro);
       letter-spacing: 2px;
@@ -324,8 +342,8 @@
     }
 
     .frase {
-      margin-top: 48px;
-      font-size: 26px;
+      margin-top: 36px;
+      font-size: 20px;
       font-weight: 700;
       color: #fff;
       text-shadow: 0 0 16px rgba(139, 92, 246, 0.8);
@@ -537,6 +555,21 @@
       border-radius: 10px;
       font-weight: 700;
     }
+
+    /* ---------- Computador: mesmo visual do celular ---------- */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+    .abas { cursor: grab; }
+    .abas.arrastando { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+
+    @media (min-width: 600px) {
+      html { background: #0d0d14; }
+      body {
+        width: 100%;
+        max-width: 430px;
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -562,14 +595,14 @@
     <nav class="abas">
       <button onclick="ir('avaliacoes')">avaliações</button>
       <button onclick="ir('resultados')">resultados</button>
+      <button onclick="ir('info')">informações</button>
       <button onclick="ir('sugestoes')">sugestões</button>
+      <button onclick="ir('parcerias')">parcerias</button>
     </nav>
 
-    <p class="texto">
-      O sedentarismo nas escolas de tempo integral é um problema que pode afetar a saúde e o bem-estar dos estudantes. A falta de atividades físicas durante o dia aumenta o risco de obesidade, problemas cardiovasculares, dores musculares e dificuldades de concentração. Além disso, passar muitas horas sentado pode prejudicar a disposição, o desenvolvimento físico e a saúde mental dos alunos. Por isso, é importante que as escolas reconheçam essas ameaças e incentivem hábitos mais saudáveis.
-    </p>
-    <p class="texto">
-      Para combater o sedentarismo nas escolas de tempo integral, é necessário adotar medidas que incentivem o movimento e a participação dos estudantes. A escola pode promover aulas de educação física mais dinâmicas, pausas ativas entre as aulas, jogos esportivos, dança e atividades recreativas. Também é importante conscientizar os alunos sobre os benefícios da prática regular de exercícios físicos e oferecer espaços adequados para essas atividades. Dessa forma, a escola contribui para uma rotina mais saudável, ativa e equilibrada.
+    <img class="logo" src="logo.png" alt="Educa + Performance" onerror="this.style.display='none'">
+    <p class="texto destaque">
+      O Educa + Performance propõe uma plataforma que integra tecnologia, avaliações diagnósticas, orientação e acompanhamento de indicadores para ajudar os estudantes a compreender seus hábitos e buscar uma rotina mais saudável. A iniciativa trabalha três pilares essenciais: atividade física, alimentação equilibrada e sono de qualidade, para estimular a prevenção, a autonomia e o protagonismo juvenil.
     </p>
     <div class="compartilhar">
       <button class="btn-compartilhar" onclick="alternarCompartilhamento()" aria-label="Compartilhar site" aria-expanded="false" id="btnCompartilhar">
@@ -630,7 +663,7 @@
       <h2>Pontos</h2>
       <span class="bola" id="rPontos">0</span>
       <h2>Estatísticas</h2>
-      <span class="bola" id="rEstat">—</span>
+      <span class="bola" id="rEstat">0%</span>
       <h2>Dias alcançados</h2>
       <span class="bola" id="rDias">0</span>
     </div>
@@ -654,34 +687,17 @@
     <p class="rodape">Após realizar os objetivos, entre no site para marcar seu login diário e receber pontos nos resultados.</p>
   </section>
 
-  <!-- ============ MEU PERFIL ============ -->
-  <section class="tela" id="tela-perfil">
-    <button class="voltar" onclick="voltar()" aria-label="Voltar">
-      <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
-    </button>
-    <h1 class="titulo">Meu perfil</h1>
-    <div class="av" id="previewAv" style="width:104px;height:104px;margin:0 auto 18px"></div>
-    <label class="rotulo" for="apelido">Apelido</label>
-    <input class="campo" type="text" id="apelido" maxlength="16" placeholder="Como você quer aparecer" autocomplete="off">
-    <span class="rotulo" style="margin-top:20px">Escolha seu avatar</span>
-    <div class="grade-av" id="gradeAv"></div>
-    <button class="btn-pilula" onclick="salvarPerfil()">Salvar perfil</button>
-    <p class="ok" id="okPerfil"></p>
-  </section>
-
   <!-- ============ CONFIGURAÇÕES ============ -->
   <section class="tela" id="tela-config">
     <button class="voltar" onclick="voltar()" aria-label="Voltar">
       <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
     </button>
     <div class="menu">
-      <button class="item" onclick="ir('perfil')">Meu perfil</button>
       <a class="item" id="linkSuporte" href="#" target="_blank" rel="noopener">
         Suporte
         <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
       </a>
       <button class="item" onclick="ir('duvidas')">Dúvidas</button>
-      <button class="item" onclick="ir('info')">Informações</button>
       <button class="item" onclick="ir('relogio')">Relógio</button>
     </div>
   </section>
@@ -710,10 +726,15 @@
     <button class="voltar" onclick="voltar()" aria-label="Voltar">
       <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
     </button>
-    <h1 class="titulo">Informações</h1>
-    <p class="texto">O sedentarismo é um problema que visamos diminuir nas escolas de tempo integral.</p>
-    <p class="texto">Sedentarismo é passar a maior parte do dia sentado ou parado, com pouca atividade física. Aqui você faz avaliações sobre seus hábitos, acompanha suas estatísticas, ganha pontos por entrar todos os dias e recebe sugestões para ter uma rotina mais ativa e saudável.</p>
-    <p class="texto">Site criado por <b>Alessandro Gomes Santos</b>.</p>
+    <p class="texto destaque" style="margin-top:24px">O sedentarismo, a alimentação inadequada e a falta de sono de qualidade podem comprometer a saúde, a disposição e o desempenho dos estudantes do Ensino Médio Integral. Diante dessa realidade, o Educa + Performance propõe uma solução que conecta tecnologia, prevenção e educação para incentivar hábitos mais saudáveis e promover mudanças positivas na rotina escolar.</p>
+    <p class="texto destaque">Por meio de avaliações diagnósticas, acompanhamento de indicadores e ações de conscientização, a plataforma busca ajudar os estudantes a compreender seus hábitos, acompanhar sua evolução e desenvolver uma rotina mais ativa e equilibrada.</p>
+  </section>
+
+  <!-- ============ PARCERIAS (vazia por enquanto) ============ -->
+  <section class="tela" id="tela-parcerias">
+    <button class="voltar" onclick="voltar()" aria-label="Voltar">
+      <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
+    </button>
   </section>
 
   <!-- ============ RELÓGIO ============ -->
@@ -780,7 +801,6 @@
       if (nome === 'resultados') atualizarResultados();
       if (nome === 'relogio') atualizarRelogio();
       if (nome === 'ranking') renderRanking();
-      if (nome === 'perfil') renderPerfil();
     }
 
     function ir(nome) {
@@ -835,7 +855,7 @@
       var av = ler('avaliacao');
       el('rPontos').textContent = calcularPontos(dias);
       el('rDias').textContent = dias;
-      el('rEstat').textContent = av ? av.pct + '%' : '—';
+      el('rEstat').textContent = av ? av.pct + '%' : '0%';
     }
 
     // ================= AVATARES (desenhados em SVG) =================
@@ -996,44 +1016,6 @@
       return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' + miolo + '</svg>';
     }
 
-    // ================= MEU PERFIL =================
-    var avatarSel = 0;
-
-    function atualizarPreview() {
-      el('previewAv').innerHTML = svgAvatar(avatarSel);
-    }
-
-    function renderPerfil() {
-      var p = ler('perfil') || { apelido: '', avatar: 0 };
-      avatarSel = p.avatar || 0;
-      el('apelido').value = p.apelido || '';
-      el('okPerfil').textContent = '';
-
-      var html = '';
-      for (var i = 0; i < AVATARES.length; i++) {
-        html += '<button type="button" class="av-opcao' + (i === avatarSel ? ' sel' : '') +
-                '" onclick="escolherAvatar(' + i + ')" aria-label="Avatar ' + (i + 1) + '">' +
-                '<div class="av">' + svgAvatar(i) + '</div></button>';
-      }
-      el('gradeAv').innerHTML = html;
-      atualizarPreview();
-    }
-
-    function escolherAvatar(i) {
-      avatarSel = i;
-      var botoes = document.querySelectorAll('.av-opcao');
-      for (var k = 0; k < botoes.length; k++) {
-        botoes[k].classList.toggle('sel', k === i);
-      }
-      atualizarPreview();
-    }
-
-    function salvarPerfil() {
-      var apelido = el('apelido').value.trim().slice(0, 16);
-      salvar('perfil', { apelido: apelido, avatar: avatarSel });
-      el('okPerfil').textContent = 'Perfil salvo!';
-    }
-
     // ================= RANKING =================
     function aleatorio(semente) {
       return function () {
@@ -1063,7 +1045,7 @@
     function montarRanking() {
       var lista = RANKING_DEMO ? participantesExemplo() : [];
       var pontos = pontosAtuais();
-      var perfil = ler('perfil') || {};
+      var perfil = {};
       if (pontos >= MIN_RANKING) {
         lista.push({ nome: perfil.apelido || 'Você', pontos: pontos, avatar: perfil.avatar || 0, voce: true });
       }
@@ -1124,33 +1106,66 @@
       });
     }
 
-    var SIM_NAO = [
-      { valor: 'sim', rotulo: 'Sim' },
-      { valor: 'nao', rotulo: 'Não' }
+    var FREQ = [
+      { valor: 'nunca',     rotulo: 'Nunca' },
+      { valor: 'raramente', rotulo: 'Raramente' },
+      { valor: 'as_vezes',  rotulo: 'Às vezes' },
+      { valor: 'frequente', rotulo: 'Frequentemente' },
+      { valor: 'sempre',    rotulo: 'Sempre' }
+    ];
+    var FREQ_V = ['nunca', 'raramente', 'as_vezes', 'frequente', 'sempre'];
+
+    // nota de 0 a 1: inverter = true quando "nunca" é o melhor
+    function notaFreq(inverter) {
+      return function (v) {
+        var n = FREQ_V.indexOf(v) / 4;
+        return inverter ? 1 - n : n;
+      };
+    }
+
+    var TELA = [];
+    for (var t = 1; t <= 12; t++) {
+      TELA.push({ valor: String(t), rotulo: t + (t === 1 ? ' hora' : ' horas') });
+    }
+    TELA.push({ valor: '13', rotulo: 'Mais de 12 horas' });
+
+    var ESPACOS = [
+      { valor: '0', rotulo: 'Não oferece' },
+      { valor: '1', rotulo: 'Oferece poucos espaços' },
+      { valor: '2', rotulo: 'Oferece, mas não são adequados' },
+      { valor: '3', rotulo: 'Oferece quase todos' },
+      { valor: '4', rotulo: 'Oferece espaços adequados' }
     ];
 
     var PERGUNTAS = [
-      { id: 'dormeTarde', texto: 'Você costuma dormir tarde?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } },
+      { id: 'dormeTarde', texto: 'Com que frequência você dorme tarde?', opcoes: FREQ,
+        nota: notaFreq(true) },
       { id: 'horario', texto: 'Em que horário você costuma dormir?', opcoes: horas, depende: 'dormeTarde',
-        bom: function (v) { return Number(v) <= 22; } },
-      { id: 'esforco', texto: 'Você se esforça para fazer atividades físicas?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'sim'; } },
-      { id: 'dormeEscola', texto: 'Você costuma dormir na escola?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } },
-      { id: 'celular', texto: 'Você passa muito tempo no celular?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } },
-      { id: 'tela', texto: 'Qual é o seu tempo de tela por dia?',
-        opcoes: [{ valor: '3', rotulo: '3 horas' }, { valor: '9', rotulo: '9 horas' }],
-        bom: function (v) { return v === '3'; } },
-      { id: 'cansaco', texto: 'Você sente cansaço ou falta de disposição?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } },
-      { id: 'espacos', texto: 'Sua escola oferece espaços adequados para atividades físicas?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'sim'; } },
-      { id: 'deveres', texto: 'Você deixa de fazer os seus deveres?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } },
-      { id: 'humor', texto: 'Você notou mudança de humor nos últimos tempos?', opcoes: SIM_NAO,
-        bom: function (v) { return v === 'nao'; } }
+        nota: function (v) {
+          var h = Number(v);
+          if (h <= 21) return 1;
+          return [0.7, 0.4, 0.1][Math.min(h, 24) - 22];
+        } },
+      { id: 'esforco', texto: 'Com que frequência você se esforça para fazer atividades físicas?', opcoes: FREQ,
+        nota: notaFreq(false) },
+      { id: 'dormeEscola', texto: 'Com que frequência você dorme na escola?', opcoes: FREQ,
+        nota: notaFreq(true) },
+      { id: 'celular', texto: 'Com que frequência você passa muito tempo no celular?', opcoes: FREQ,
+        nota: notaFreq(true) },
+      { id: 'tela', texto: 'Qual é o seu tempo de tela por dia?', opcoes: TELA,
+        nota: function (v) {
+          var h = Number(v);
+          if (h <= 2) return 1;
+          return Math.max(0, 1 - (h - 2) * 0.15);
+        } },
+      { id: 'cansaco', texto: 'Com que frequência você sente cansaço ou falta de disposição?', opcoes: FREQ,
+        nota: notaFreq(true) },
+      { id: 'espacos', texto: 'Sua escola oferece espaços adequados para atividades físicas?', opcoes: ESPACOS,
+        nota: function (v) { return Number(v) / 4; } },
+      { id: 'deveres', texto: 'Com que frequência você deixa de fazer os seus deveres?', opcoes: FREQ,
+        nota: notaFreq(true) },
+      { id: 'humor', texto: 'Com que frequência você notou mudança de humor nos últimos tempos?', opcoes: FREQ,
+        nota: notaFreq(true) }
     ];
 
     function montarPerguntas() {
@@ -1173,7 +1188,8 @@
 
     function aoMudar() {
       // A pergunta do horário só aparece se a pessoa dorme tarde
-      el('q-horario').style.display = el('s-dormeTarde').value === 'sim' ? 'block' : 'none';
+      var d = el('s-dormeTarde').value;
+      el('q-horario').style.display = (d !== '' && d !== 'nunca') ? 'block' : 'none';
     }
 
     function enviarAvaliacao() {
@@ -1181,7 +1197,8 @@
       var faltou = false;
 
       PERGUNTAS.forEach(function (p) {
-        var visivel = !p.depende || el('s-' + p.depende).value === 'sim';
+        var dep = p.depende ? el('s-' + p.depende).value : null;
+        var visivel = !p.depende || (dep !== '' && dep !== 'nunca');
         if (!visivel) return;
         var v = el('s-' + p.id).value;
         if (v === '') {
@@ -1199,13 +1216,13 @@
       el('erroQuiz').textContent = '';
 
       var total = 0;
-      var certas = 0;
+      var soma = 0;
       PERGUNTAS.forEach(function (p) {
         if (respostas[p.id] === undefined) return;
         total++;
-        if (p.bom(respostas[p.id])) certas++;
+        soma += p.nota(respostas[p.id]);
       });
-      var pct = Math.round((certas / total) * 100);
+      var pct = Math.round((soma / total) * 100);
 
       salvar('avaliacao', { pct: pct, data: hojeChave(), peso: peso });
 
@@ -1217,7 +1234,7 @@
       } else {
         msg = 'Alguns hábitos precisam de atenção. Veja as sugestões e comece aos poucos.';
       }
-      if (respostas.humor === 'sim') {
+      if (['as_vezes', 'frequente', 'sempre'].indexOf(respostas.humor) !== -1) {
         msg += ' Se as mudanças de humor estão te incomodando, converse com alguém de confiança ou com um profissional de saúde.';
       }
 
@@ -1257,8 +1274,6 @@
         texto: 'Mudanças de humor são comuns, mas se estiverem fortes ou durarem muito tempo, converse com alguém de confiança e procure um profissional de saúde. Atividade física e um bom sono também ajudam no bem-estar.' },
       { chaves: ['ranking', 'classificacao', 'posicao'],
         texto: 'O ranking mostra as 200 pessoas com mais pontos. Para entrar, você precisa de pelo menos 100 pontos. Veja a sua posição na aba ranking.' },
-      { chaves: ['avatar', 'perfil', 'apelido', 'foto de perfil'],
-        texto: 'Toque nos três pontinhos e abra Meu perfil para escolher seu avatar e seu apelido.' },
       { chaves: ['ponto', 'pontuacao', 'pontuação'],
         texto: 'Você ganha 1 ponto por dia ao entrar no site e mais 2 pontos extras a cada 4 dias de acesso. Com 100 pontos você entra no ranking. Veja o total na aba resultados.' },
       { chaves: ['avaliac', 'questionario', 'dropdown'],
@@ -1371,6 +1386,38 @@
       await copiarLinkCompartilhamento();
       window.open('https://www.tiktok.com/', '_blank', 'noopener,noreferrer');
     }
+
+    // ================= ABAS: ARRASTAR COM O MOUSE (computador) =================
+    (function () {
+      var barra = document.querySelector('.abas');
+      var apertado = false, moveu = false, x0 = 0, rolagem0 = 0;
+
+      barra.addEventListener('mousedown', function (e) {
+        apertado = true; moveu = false;
+        x0 = e.pageX; rolagem0 = barra.scrollLeft;
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!apertado) return;
+        var dx = e.pageX - x0;
+        if (Math.abs(dx) > 5) { moveu = true; barra.classList.add('arrastando'); }
+        if (moveu) barra.scrollLeft = rolagem0 - dx;
+      });
+      window.addEventListener('mouseup', function () {
+        apertado = false;
+        barra.classList.remove('arrastando');
+      });
+      // se arrastou, não conta como clique no botão
+      barra.addEventListener('click', function (e) {
+        if (moveu) { e.stopPropagation(); e.preventDefault(); moveu = false; }
+      }, true);
+      // roda do mouse rola para o lado
+      barra.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          barra.scrollLeft += e.deltaY;
+          e.preventDefault();
+        }
+      }, { passive: false });
+    })();
 
     // ================= INÍCIO =================
     montarPerguntas();
