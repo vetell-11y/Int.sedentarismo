@@ -42,6 +42,10 @@
       display: none;
       min-height: calc(100vh - 6px);
       padding: 16px 18px 32px;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .tela.ativa {
@@ -66,13 +70,14 @@
       display: block;
       padding: 4px 0;
       margin-bottom: 8px;
+      margin-right: auto;
     }
 
     /* ---------- Início ---------- */
     .topo {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin-bottom: 8px;
     }
 
@@ -145,7 +150,14 @@
       scroll-snap-type: x proximity;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      cursor: grab;
     }
+
+    .abas::-webkit-scrollbar { display: none; }
+    .abas.arrastando { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+    /* centraliza quando cabem todas; rola para o lado quando não cabem */
+    .abas button:first-child { margin-left: auto; }
+    .abas button:last-child { margin-right: auto; }
 
     .abas::-webkit-scrollbar { display: none; }
 
@@ -496,6 +508,7 @@
     }
 
     .msg {
+      text-align: left;
       max-width: 85%;
       padding: 10px 14px;
       border-radius: 14px;
@@ -559,16 +572,130 @@
     /* ---------- Computador: mesmo visual do celular ---------- */
     html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
-    .abas { cursor: grab; }
-    .abas.arrastando { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+    /* ---------- Equipe de desenvolvimento ---------- */
+    .equipe-card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 32px auto 0;
+      padding: 16px 18px;
+      max-width: 420px;
+      text-align: left;
+      background: var(--card);
+      border: 2px solid var(--roxo);
+      border-radius: 16px;
+      box-shadow: 0 0 14px rgba(139, 92, 246, 0.4);
+    }
 
-    @media (min-width: 600px) {
-      html { background: #0d0d14; }
-      body {
-        width: 100%;
-        max-width: 430px;
-        margin: 0 auto;
-      }
+    .equipe-card .foto { width: 56px; height: 56px; flex: none; font-size: 22px; cursor: default; }
+    .equipe-card .nm { font-size: 17px; font-weight: 700; line-height: 1.3; }
+    .equipe-card .fn { color: var(--cinza); font-size: 14px; }
+
+    /* ---------- IMC ---------- */
+    .imc-card {
+      max-width: 520px;
+      margin: 8px auto 0;
+      padding: 20px 18px;
+      background: var(--card);
+      border: 2px solid var(--roxo);
+      border-radius: 16px;
+    }
+    .imc-res { min-height: 26px; margin-bottom: 14px; font-size: 18px; font-weight: 700; }
+    .imc-card .pergunta label { font-size: 16px; }
+
+    /* ---------- Metas ---------- */
+    .meta-form {
+      text-align: left;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      background: var(--card);
+      border: 2px solid var(--roxo);
+      border-radius: 14px;
+    }
+
+    .meta-form .pergunta label { font-size: 15px; }
+    .meta-form textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 14px;
+      background: var(--card);
+      color: #fff;
+      font-size: 16px;
+      font-family: inherit;
+      border: 1px solid #3f3f46;
+      border-radius: 10px;
+      outline: none;
+      resize: vertical;
+    }
+    .meta-form textarea:focus { border-color: var(--roxo); box-shadow: 0 0 8px rgba(139, 92, 246, 0.5); }
+
+    .prazo-linha { display: flex; gap: 10px; }
+    .prazo-linha input { flex: 1; }
+    .prazo-linha select { flex: 1.4; }
+
+    .lista-metas {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 520px;
+      margin: 24px auto 0;
+    }
+
+    .meta-card {
+      padding: 16px;
+      background: var(--card);
+      border: 2px solid var(--roxo);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .meta-card h3 { color: var(--roxo-claro); font-size: 18px; margin-bottom: 8px; }
+    .meta-card p { font-size: 14px; line-height: 1.5; color: #e4e4e7; margin-bottom: 6px; }
+    .meta-card .prazo { color: var(--cinza); font-size: 13px; }
+    .meta-card.ganhou { border-color: #4ade80; }
+    .meta-card.perdeu { border-color: #f59e0b; }
+    .meta-card .resultado { font-weight: 700; margin-top: 10px; line-height: 1.5; }
+    .meta-card.ganhou .resultado { color: #4ade80; }
+    .meta-card.perdeu .resultado { color: #fbbf24; }
+
+    .meta-acoes { display: flex; gap: 10px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+    .meta-acoes button {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--roxo);
+      background: rgba(139, 92, 246, 0.15);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .meta-acoes .remover { color: var(--cinza); border-color: #3f3f46; background: none; }
+
+    /* ---------- Responsivo ---------- */
+    html { background: #000; }
+
+    @media (min-width: 700px) {
+      .tela { max-width: 960px; padding: 28px 40px 48px; }
+      h1.titulo { font-size: 32px; margin: 16px 0 28px; }
+      p.texto { font-size: 17px; max-width: 760px; margin-left: auto; margin-right: auto; }
+      p.texto.destaque { font-size: 17px; }
+      img.logo { max-width: 520px; }
+      .abas button { font-size: 16px; padding: 11px 22px; }
+      .caixa { max-width: 640px; margin-left: auto; margin-right: auto; }
+      .menu { max-width: 560px; margin-left: auto; margin-right: auto; }
+      .lista-sug { font-size: 18px; }
+      .lista-sug p { font-size: 20px; }
+      .lista-metas { grid-template-columns: 1fr 1fr; max-width: 900px; }
+      .meta-form { padding: 26px; }
+      #hora { font-size: 64px; }
+      .btn-pilula { font-size: 20px; padding: 16px 40px; }
+      .pergunta { max-width: 560px; margin-left: auto; margin-right: auto; }
+      .envio, #msgs, .chips { max-width: 640px; margin-left: auto; margin-right: auto; }
+    }
+
+    @media (min-width: 1100px) {
+      .tela { max-width: 1100px; }
     }
   </style>
 </head>
@@ -577,24 +704,13 @@
   <!-- ============ INÍCIO ============ -->
   <section class="tela ativa" id="tela-home">
     <header class="topo">
-      <div class="perfil">
-        <!-- Coloque sua foto na mesma pasta com o nome foto.jpg -->
-        <img class="foto" id="fotoPerfil" src="Screenshot_20261026_215931_Gallery.jpg" alt="Foto de perfil"
-             onclick="alternarNome()"
-             onerror="this.removeAttribute('src'); this.alt='A'">
-        <span class="papel">desenvolvedor</span>
-      </div>
       <button class="pontinhos" onclick="ir('config')" aria-label="Configurações">&middot;&middot;&middot;</button>
     </header>
-
-    <div class="nome-card" id="nomeCard">
-      Alessandro Gomes Santos
-      <small>desenvolvedor do site</small>
-    </div>
 
     <nav class="abas">
       <button onclick="ir('avaliacoes')">avaliações</button>
       <button onclick="ir('resultados')">resultados</button>
+      <button onclick="ir('metas')">metas</button>
       <button onclick="ir('info')">informações</button>
       <button onclick="ir('sugestoes')">sugestões</button>
       <button onclick="ir('parcerias')">parcerias</button>
@@ -640,6 +756,39 @@
     <button class="btn-pilula" onclick="enviarAvaliacao()">Enviar</button>
   </section>
 
+  <!-- ============ IMC ============ -->
+  <section class="tela" id="tela-imc">
+    <button class="voltar" onclick="voltar()" aria-label="Voltar">
+      <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
+    </button>
+    <h1 class="titulo">IMC</h1>
+    <div class="imc-card">
+      <svg id="medidor" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;display:block;margin:0 auto 12px"></svg>
+      <p class="imc-res" id="resIMC"></p>
+      <div class="pergunta">
+        <label for="iPeso">Peso (kg)</label>
+        <input type="number" id="iPeso" inputmode="decimal" min="20" max="300" placeholder="Ex.: 55">
+      </div>
+      <div class="pergunta">
+        <label for="iAltura">Altura (cm)</label>
+        <input type="number" id="iAltura" inputmode="decimal" placeholder="Ex.: 165">
+      </div>
+      <div class="pergunta">
+        <label for="iGenero">Gênero</label>
+        <select id="iGenero">
+          <option value="">Selecione</option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+          <option value="outro">Outro / prefiro não informar</option>
+        </select>
+      </div>
+      <p class="erro" id="erroIMC"></p>
+      <button class="btn-pilula" onclick="calcularIMC()">Calcular</button>
+      <button class="btn-pilula" id="btnConcluirIMC" style="display:none;margin-top:12px;background:none;border:2px solid var(--roxo)" onclick="concluirIMC()">Ver meu resultado</button>
+    </div>
+    <p class="aviso">O IMC é uma estimativa educativa. Em menores de 18 anos ele é interpretado por idade e sexo, então converse com um profissional de saúde para uma avaliação correta.</p>
+  </section>
+
   <!-- ============ AVALIAÇÃO FEITA ============ -->
   <section class="tela" id="tela-avalok">
     <button class="voltar" onclick="voltar()" aria-label="Voltar">
@@ -648,6 +797,7 @@
     <div class="caixa">
       <p>Sua avaliação foi feita com sucesso</p>
       <p class="grande">Suas estatísticas são de <b id="pctFinal">0%</b></p>
+      <p id="imcFinal" class="texto" style="margin:0"></p>
       <p id="msgFinal" class="texto" style="margin:0"></p>
     </div>
     <p class="aviso">Esta avaliação é educativa e não substitui uma consulta com um profissional de saúde.</p>
@@ -697,9 +847,76 @@
         Suporte
         <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
       </a>
+      <button class="item" onclick="ir('equipe')">Equipe de desenvolvimento</button>
       <button class="item" onclick="ir('duvidas')">Dúvidas</button>
       <button class="item" onclick="ir('relogio')">Relógio</button>
     </div>
+  </section>
+
+  <!-- ============ EQUIPE DE DESENVOLVIMENTO ============ -->
+  <section class="tela" id="tela-equipe">
+    <button class="voltar" onclick="voltar()" aria-label="Voltar">
+      <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
+    </button>
+    <h1 class="titulo">Equipe de desenvolvimento</h1>
+    <div class="equipe-card">
+      <img class="foto" src="Screenshot_20261026_215931_Gallery.jpg" alt="Foto de Alessandro Gomes Santos"
+           onerror="this.removeAttribute('src'); this.alt='A'">
+      <div>
+        <div class="nm">Alessandro Gomes Santos</div>
+        <div class="fn">Desenvolvedor do site</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METAS ============ -->
+  <section class="tela" id="tela-metas">
+    <button class="voltar" onclick="voltar()" aria-label="Voltar">
+      <svg width="48" height="40" viewBox="0 0 48 40"><path d="M2 20 L20 3 L20 13 L46 13 L46 27 L20 27 L20 37 Z" fill="#8b5cf6"/></svg>
+    </button>
+    <h1 class="titulo">Metas</h1>
+    <p class="texto">Crie suas metas, defina o prazo e o que você vai precisar para alcançá-las.</p>
+    <button class="btn-pilula" id="btnNovaMeta" onclick="abrirFormMeta()">+ Criar meta</button>
+
+    <div class="meta-form" id="formMeta" style="display:none;margin-top:20px">
+      <div class="pergunta">
+        <label for="mTipo">Tipo de meta</label>
+        <select id="mTipo">
+          <option value="">Selecione</option>
+          <option>Atividade física</option>
+          <option>Leitura</option>
+          <option>Alimentação</option>
+          <option>Sono</option>
+          <option>Tempo de tela</option>
+          <option>Estudos</option>
+          <option>Outra</option>
+        </select>
+      </div>
+      <div class="pergunta">
+        <label for="mDesc">Qual é a sua meta?</label>
+        <input type="text" class="campo" id="mDesc" maxlength="80" placeholder="Ex.: Caminhar 20 minutos por dia">
+      </div>
+      <div class="pergunta">
+        <label for="mQtd">Tempo para alcançar</label>
+        <div class="prazo-linha">
+          <input type="number" id="mQtd" min="1" max="365" inputmode="numeric" placeholder="Ex.: 7">
+          <select id="mUnid">
+            <option value="1">dia(s)</option>
+            <option value="7">semana(s)</option>
+            <option value="30">mês(es)</option>
+          </select>
+        </div>
+      </div>
+      <div class="pergunta">
+        <label for="mPrec">O que você vai precisar?</label>
+        <textarea id="mPrec" maxlength="200" placeholder="Ex.: Tênis, local para caminhar, acordar mais cedo"></textarea>
+      </div>
+      <p class="erro" id="erroMeta"></p>
+      <button class="btn-pilula" onclick="salvarMeta()">Salvar meta</button>
+    </div>
+
+    <div class="lista-metas" id="listaMetas"></div>
+    <p class="aviso" id="semMetas">Você ainda não criou nenhuma meta.</p>
   </section>
 
   <!-- ============ DÚVIDAS (assistente) ============ -->
@@ -801,6 +1018,7 @@
       if (nome === 'resultados') atualizarResultados();
       if (nome === 'relogio') atualizarRelogio();
       if (nome === 'ranking') renderRanking();
+      if (nome === 'metas') renderMetas();
     }
 
     function ir(nome) {
@@ -813,9 +1031,122 @@
       mostrar(pilha[pilha.length - 1]);
     }
 
-    function alternarNome() {
-      el('nomeCard').classList.toggle('aberto');
+    // ================= METAS =================
+    function listaMetas() { return ler('metas') || []; }
+
+    function abrirFormMeta() {
+      var f = el('formMeta');
+      f.style.display = f.style.display === 'none' ? 'block' : 'none';
     }
+
+    function salvarMeta() {
+      var tipo = el('mTipo').value;
+      var desc = el('mDesc').value.trim();
+      var qtd = parseInt(el('mQtd').value, 10);
+      var unid = parseInt(el('mUnid').value, 10);
+      var prec = el('mPrec').value.trim();
+
+      if (!tipo || !desc || isNaN(qtd) || qtd < 1 || !prec) {
+        el('erroMeta').textContent = 'Preencha todos os campos da meta.';
+        return;
+      }
+      el('erroMeta').textContent = '';
+
+      var agora = Date.now();
+      var metas = listaMetas();
+      metas.unshift({
+        id: agora,
+        tipo: tipo,
+        desc: desc,
+        prec: prec,
+        criada: agora,
+        fim: agora + qtd * unid * 86400000,
+        status: 'andamento'
+      });
+      salvar('metas', metas);
+
+      el('mTipo').value = '';
+      el('mDesc').value = '';
+      el('mQtd').value = '';
+      el('mUnid').value = '1';
+      el('mPrec').value = '';
+      el('formMeta').style.display = 'none';
+      renderMetas();
+    }
+
+    function responderMeta(id, status) {
+      var metas = listaMetas();
+      metas.forEach(function (m) { if (m.id === id) m.status = status; });
+      salvar('metas', metas);
+      renderMetas();
+    }
+
+    function removerMeta(id) {
+      salvar('metas', listaMetas().filter(function (m) { return m.id !== id; }));
+      renderMetas();
+    }
+
+    function dataBR(ts) {
+      var d = new Date(ts);
+      var dd = ('0' + d.getDate()).slice(-2);
+      var mm = ('0' + (d.getMonth() + 1)).slice(-2);
+      var hh = ('0' + d.getHours()).slice(-2);
+      var mi = ('0' + d.getMinutes()).slice(-2);
+      return dd + '/' + mm + '/' + d.getFullYear() + ' às ' + hh + ':' + mi;
+    }
+
+    function tempoRestante(ms) {
+      var min = Math.max(1, Math.floor(ms / 60000));
+      var dias = Math.floor(min / 1440);
+      var horas = Math.floor((min % 1440) / 60);
+      var mins = min % 60;
+      if (dias > 0) return dias + (dias === 1 ? ' dia' : ' dias') + (horas ? ' e ' + horas + 'h' : '');
+      if (horas > 0) return horas + 'h' + (mins ? ' e ' + mins + 'min' : '');
+      return mins + ' min';
+    }
+
+    function renderMetas() {
+      var metas = listaMetas();
+      var agora = Date.now();
+      var html = '';
+
+      metas.forEach(function (m) {
+        var classe = m.status === 'ganhou' ? ' ganhou' : (m.status === 'perdeu' ? ' perdeu' : '');
+        html += '<div class="meta-card' + classe + '">';
+        html += '<h3>' + esc(m.tipo) + '</h3>';
+        html += '<p><b>' + esc(m.desc) + '</b></p>';
+        html += '<p>Vou precisar de: ' + esc(m.prec) + '</p>';
+        html += '<p class="prazo">Prazo: ' + dataBR(m.fim) + '</p>';
+
+        if (m.status === 'ganhou') {
+          html += '<p class="resultado">🎉 Parabéns! Você alcançou sua meta! Continue assim e crie novas metas para evoluir ainda mais.</p>';
+          html += '<div class="meta-acoes"><button class="remover" onclick="removerMeta(' + m.id + ')">Remover</button></div>';
+        } else if (m.status === 'perdeu') {
+          html += '<p class="resultado">Você não conseguiu desta vez, mas tudo bem! Tente na próxima, você consegue. 💪</p>';
+          html += '<div class="meta-acoes"><button class="remover" onclick="removerMeta(' + m.id + ')">Remover</button></div>';
+        } else if (agora >= m.fim) {
+          html += '<p class="resultado" style="color:#fff">O prazo acabou. Você alcançou sua meta?</p>';
+          html += '<div class="meta-acoes">' +
+                  '<button onclick="responderMeta(' + m.id + ', \'ganhou\')">Sim</button>' +
+                  '<button onclick="responderMeta(' + m.id + ', \'perdeu\')">Não</button></div>';
+        } else {
+          html += '<p class="prazo">Faltam ' + tempoRestante(m.fim - agora) + '</p>';
+          html += '<div class="meta-acoes">' +
+                  '<button onclick="responderMeta(' + m.id + ', \'ganhou\')">Já concluí</button>' +
+                  '<button class="remover" onclick="removerMeta(' + m.id + ')">Remover</button></div>';
+        }
+        html += '</div>';
+      });
+
+      el('listaMetas').innerHTML = html;
+      el('semMetas').style.display = metas.length ? 'none' : 'block';
+      el('btnNovaMeta').textContent = metas.length ? '+ Criar mais uma meta' : '+ Criar meta';
+    }
+
+    // Atualiza as metas a cada 30 segundos enquanto a tela está aberta
+    setInterval(function () {
+      if (el('tela-metas').classList.contains('ativa')) renderMetas();
+    }, 30000);
 
     // ================= LOGIN DIÁRIO E PONTOS =================
     function hojeChave() {
@@ -1118,8 +1449,12 @@
     // nota de 0 a 1: inverter = true quando "nunca" é o melhor
     function notaFreq(inverter) {
       return function (v) {
-        var n = FREQ_V.indexOf(v) / 4;
-        return inverter ? 1 - n : n;
+        var i = FREQ_V.indexOf(v);
+        // hábito ruim: nunca = 100%, raramente = 85%, às vezes = 60%, frequente = 30%, sempre = 0%
+        var ruim = [1, 0.85, 0.6, 0.3, 0];
+        // hábito bom: o contrário
+        var bom = [0, 0.3, 0.6, 0.85, 1];
+        return inverter ? ruim[i] : bom[i];
       };
     }
 
@@ -1143,28 +1478,28 @@
       { id: 'horario', texto: 'Em que horário você costuma dormir?', opcoes: horas, depende: 'dormeTarde',
         nota: function (v) {
           var h = Number(v);
-          if (h <= 21) return 1;
-          return [0.7, 0.4, 0.1][Math.min(h, 24) - 22];
+          if (h <= 22) return 1;
+          return [0.8, 0.55][Math.min(h, 24) - 23];
         } },
-      { id: 'esforco', texto: 'Com que frequência você se esforça para fazer atividades físicas?', opcoes: FREQ,
+      { id: 'esforco', texto: 'Você se esforça para fazer atividades físicas?', opcoes: FREQ,
         nota: notaFreq(false) },
-      { id: 'dormeEscola', texto: 'Com que frequência você dorme na escola?', opcoes: FREQ,
+      { id: 'dormeEscola', texto: 'Você dorme na escola?', opcoes: FREQ,
         nota: notaFreq(true) },
       { id: 'celular', texto: 'Com que frequência você passa muito tempo no celular?', opcoes: FREQ,
         nota: notaFreq(true) },
       { id: 'tela', texto: 'Qual é o seu tempo de tela por dia?', opcoes: TELA,
         nota: function (v) {
           var h = Number(v);
-          if (h <= 2) return 1;
-          return Math.max(0, 1 - (h - 2) * 0.15);
+          if (h <= 3) return 1;
+          return Math.max(0, 1 - (h - 3) * 0.1);
         } },
       { id: 'cansaco', texto: 'Com que frequência você sente cansaço ou falta de disposição?', opcoes: FREQ,
         nota: notaFreq(true) },
       { id: 'espacos', texto: 'Sua escola oferece espaços adequados para atividades físicas?', opcoes: ESPACOS,
-        nota: function (v) { return Number(v) / 4; } },
-      { id: 'deveres', texto: 'Com que frequência você deixa de fazer os seus deveres?', opcoes: FREQ,
+        nota: function (v) { return 0.5 + Number(v) / 8; } },
+      { id: 'deveres', texto: 'Você deixa de fazer os seus deveres?', opcoes: FREQ,
         nota: notaFreq(true) },
-      { id: 'humor', texto: 'Com que frequência você notou mudança de humor nos últimos tempos?', opcoes: FREQ,
+      { id: 'humor', texto: 'Você notou mudança de humor nos últimos tempos?', opcoes: FREQ,
         nota: notaFreq(true) }
     ];
 
@@ -1181,8 +1516,6 @@
         });
         html += '</select></div>';
       });
-      html += '<div class="pergunta"><label for="s-peso">Qual é o seu peso (kg)?</label>';
-      html += '<input type="number" id="s-peso" inputmode="decimal" min="20" max="300" placeholder="Ex.: 55"></div>';
       el('perguntas').innerHTML = html;
     }
 
@@ -1208,9 +1541,8 @@
         }
       });
 
-      var peso = parseFloat(el('s-peso').value);
-      if (faltou || isNaN(peso) || peso < 20 || peso > 300) {
-        el('erroQuiz').textContent = 'Responda todas as perguntas e informe um peso válido.';
+      if (faltou) {
+        el('erroQuiz').textContent = 'Responda todas as perguntas.';
         return;
       }
       el('erroQuiz').textContent = '';
@@ -1224,7 +1556,7 @@
       });
       var pct = Math.round((soma / total) * 100);
 
-      salvar('avaliacao', { pct: pct, data: hojeChave(), peso: peso });
+      salvar('avaliacao', { pct: pct, data: hojeChave() });
 
       var msg;
       if (pct >= 75) {
@@ -1238,10 +1570,103 @@
         msg += ' Se as mudanças de humor estão te incomodando, converse com alguém de confiança ou com um profissional de saúde.';
       }
 
-      el('pctFinal').textContent = pct + '%';
-      el('msgFinal').textContent = msg;
+      var salvo = ler('avaliacao') || {};
+      salvo.msg = msg;
+      salvar('avaliacao', salvo);
 
-      // Troca a tela de perguntas pela de resultado
+      // Troca a tela de perguntas pela do IMC
+      pilha.pop();
+      resetarIMC();
+      ir('imc');
+    }
+
+    // ================= IMC =================
+    // Faixas do medidor (IMC de 15 a 40)
+    var IMC_MIN = 15, IMC_MAX = 40;
+    var FAIXAS_IMC = [
+      { ate: 18.5, cor: '#3b82f6', nome: 'Abaixo do peso' },
+      { ate: 25,   cor: '#22c55e', nome: 'Peso normal' },
+      { ate: 30,   cor: '#facc15', nome: 'Sobrepeso' },
+      { ate: 35,   cor: '#f97316', nome: 'Obesidade' },
+      { ate: 999,  cor: '#ef4444', nome: 'Obesidade grave' }
+    ];
+
+    function pontoArco(v, r) {
+      var f = (Math.min(Math.max(v, IMC_MIN), IMC_MAX) - IMC_MIN) / (IMC_MAX - IMC_MIN);
+      var ang = Math.PI * (1 - f);
+      return [(100 + r * Math.cos(ang)).toFixed(2), (100 - r * Math.sin(ang)).toFixed(2)];
+    }
+
+    function montarMedidor() {
+      var s = '';
+      var ini = IMC_MIN;
+      FAIXAS_IMC.forEach(function (f) {
+        var fim = Math.min(f.ate, IMC_MAX);
+        var a = pontoArco(ini, 80), b = pontoArco(fim, 80);
+        var c = pontoArco(fim, 52), d = pontoArco(ini, 52);
+        s += '<path d="M' + a[0] + ' ' + a[1] + ' A80 80 0 0 1 ' + b[0] + ' ' + b[1] +
+             ' L' + c[0] + ' ' + c[1] + ' A52 52 0 0 0 ' + d[0] + ' ' + d[1] + ' Z" fill="' + f.cor + '"/>';
+        ini = fim;
+      });
+      s += '<g id="ponteiro" style="transform-origin:100px 100px;transition:transform 1s ease;transform:rotate(-90deg)">' +
+           '<path d="M96 100 L100 30 L104 100 Z" fill="#d4d4d8"/></g>' +
+           '<circle cx="100" cy="100" r="7" fill="#d4d4d8"/>';
+      el('medidor').innerHTML = s;
+    }
+
+    function resetarIMC() {
+      el('iPeso').value = '';
+      el('iAltura').value = '';
+      el('iGenero').value = '';
+      el('erroIMC').textContent = '';
+      el('resIMC').textContent = '';
+      el('btnConcluirIMC').style.display = 'none';
+      el('ponteiro').style.transform = 'rotate(-90deg)';
+    }
+
+    function calcularIMC() {
+      var peso = parseFloat(String(el('iPeso').value).replace(',', '.'));
+      var altura = parseFloat(String(el('iAltura').value).replace(',', '.'));
+      var genero = el('iGenero').value;
+
+      if (isNaN(peso) || peso < 20 || peso > 300) {
+        el('erroIMC').textContent = 'Informe um peso válido (em kg).';
+        return;
+      }
+      // aceita 1.70 (metros) ou 170 (centímetros)
+      if (!isNaN(altura) && altura < 3) altura = altura * 100;
+      if (isNaN(altura) || altura < 100 || altura > 250) {
+        el('erroIMC').textContent = 'Informe uma altura válida (ex.: 170 cm ou 1,70 m).';
+        return;
+      }
+      if (genero === '') {
+        el('erroIMC').textContent = 'Selecione o gênero.';
+        return;
+      }
+      el('erroIMC').textContent = '';
+
+      var m = altura / 100;
+      var imc = peso / (m * m);
+      var faixa = FAIXAS_IMC.filter(function (f) { return imc < f.ate; })[0];
+      var f = (Math.min(Math.max(imc, IMC_MIN), IMC_MAX) - IMC_MIN) / (IMC_MAX - IMC_MIN);
+      el('ponteiro').style.transform = 'rotate(' + (-90 + f * 180).toFixed(1) + 'deg)';
+
+      var txt = 'IMC: ' + imc.toFixed(1).replace('.', ',') + ' — ' + faixa.nome;
+      el('resIMC').textContent = txt;
+      el('resIMC').style.color = faixa.cor;
+      el('btnConcluirIMC').style.display = 'block';
+
+      var av = ler('avaliacao') || {};
+      av.peso = peso; av.altura = altura; av.genero = genero;
+      av.imc = Math.round(imc * 10) / 10; av.imcTxt = txt;
+      salvar('avaliacao', av);
+    }
+
+    function concluirIMC() {
+      var av = ler('avaliacao') || { pct: 0 };
+      el('pctFinal').textContent = av.pct + '%';
+      el('msgFinal').textContent = av.msg || '';
+      el('imcFinal').textContent = av.imcTxt || '';
       pilha.pop();
       ir('avalok');
     }
@@ -1296,6 +1721,10 @@
         texto: 'Uma boa alimentação inclui frutas, legumes, água e menos ultraprocessados e refrigerantes. Ela dá energia para estudar e se movimentar.' },
       { chaves: ['escola', 'tempo integral'],
         texto: 'Escolas de tempo integral têm mais horas de aula, por isso é importante ter pausas ativas, educação física dinâmica e espaços adequados para atividades.' },
+      { chaves: ['meta'],
+        texto: 'Na aba metas você escolhe o tipo de meta, define o tempo para alcançá-la e o que vai precisar. Quando o prazo acabar, você diz se conseguiu e recebe uma mensagem. Dá para criar quantas metas quiser.' },
+      { chaves: ['equipe', 'desenvolvimento'],
+        texto: 'A equipe de desenvolvimento fica nos três pontinhos, na opção Equipe de desenvolvimento.' },
       { chaves: ['suporte', 'whatsapp', 'contato', 'ajuda', 'desenvolvedor'],
         texto: 'Para falar com o desenvolvedor, toque nos três pontinhos no início e abra Suporte (WhatsApp).' },
       { chaves: ['relogio', 'horas'],
@@ -1406,13 +1835,11 @@
         apertado = false;
         barra.classList.remove('arrastando');
       });
-      // se arrastou, não conta como clique no botão
       barra.addEventListener('click', function (e) {
         if (moveu) { e.stopPropagation(); e.preventDefault(); moveu = false; }
       }, true);
-      // roda do mouse rola para o lado
       barra.addEventListener('wheel', function (e) {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        if (barra.scrollWidth > barra.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           barra.scrollLeft += e.deltaY;
           e.preventDefault();
         }
@@ -1421,6 +1848,7 @@
 
     // ================= INÍCIO =================
     montarPerguntas();
+    montarMedidor();
     registrarLogin();
     el('linkSuporte').href = 'https://wa.me/' + WHATSAPP;
     addMsg('Olá! Sou o assistente do site. Tire suas dúvidas sobre sedentarismo, avaliações, pontos e sugestões.', 'bot', true);
